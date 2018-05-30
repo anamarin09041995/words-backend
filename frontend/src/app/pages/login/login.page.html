@@ -1,0 +1,37 @@
+<div class="row login-container center-crop valign-wrapper" style="background-image: url('assets/images/background.jpg')">
+    <div class="col s12 m5 l4 offset-m4 offset-l4">
+        <div class="valign card login-pane">
+            <div class="card-content white-text">
+                <h5 class="center">SINGS 4 ALL</h5>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">email</i>
+                        <input id="usr" type="text" name="usr" class="validate grey-text text-lighten-3" required [(ngModel)]="username">
+                        <label for="usr">Email</label>
+                    </div>
+    
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">lock_outline</i>
+                        <input id="pass" type="password" name="pass" class="validate grey-text text-lighten-3" required [(ngModel)]="password">
+                        <label for="pass">Contraseña</label>
+                    </div>
+                </div>
+
+                <div class="row" *ngIf="errorUnkown || errorInvalid">
+                    <p *ngIf="errorUnkown" class="center-align red-text text-darken-1">
+                        No se pudo realizar la operación, intenta de nuevo.
+                    </p>
+                    <p *ngIf="errorInvalid" class="center-align red-text text-darken-1">
+                        Usuario o contraseña incorrectos.
+                    </p>
+                </div>
+
+                <div class="row" *ngIf="!loginProcess">
+                    <button class="waves-effect waves-light btn primary col s10 offset-s1 pink darken-1" (click)="login()" type="submit">Ingresar</button>
+                </div>
+                <app-loader [center]="true" [size]="'small'" [show]="loginProcess"></app-loader>
+
+            </div>
+        </div>
+    </div>
+</div>

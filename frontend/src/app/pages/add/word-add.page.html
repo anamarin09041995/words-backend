@@ -1,0 +1,49 @@
+<div class="grey lighten-4 vertical-layout">
+    <nav class="pink darken-1">
+        <div class="nav-wrapper container">
+            <span href="#" class="brand-logo">Agregar Seña</span>
+        </div>
+    </nav>
+
+    <div class="container section ly-fill">
+        <nav class="transparent z-depth-0">
+            <div class="nav-wrapper">
+                <div class="col s12">
+                    <a routerLink="../" class="breadcrumb dark">palabras</a>
+                    <a class="breadcrumb dark">Agregar</a>
+                </div>
+            </div>
+        </nav>
+        <div class="card">
+            <div class="card-content">
+                <div class="input-field col s6">
+                    <input id="name" type="text" class="validate" [(ngModel)]="word">
+                    <label for="name">Palabra</label>
+                </div>
+                <div class="row">
+                    <div class="col s12 m6 l4">
+                        <h6>Seña</h6>
+                        <img class="add-image clickable" src="{{imgSign}}" (click)="onClickImg(signInput, SIGN)">
+                    </div>
+                    <div class="col s12 m6 l4">
+                        <h6>Ejemplo</h6>
+                        <img class="add-image clickable" src="{{img}}" (click)="onClickImg(exInput, EX)">
+                    </div>
+                </div>
+                <div class="row" *ngIf="!process; else processing">
+                        <a routerLink="../" class="col s6 m3 l2 center offset-m6 offset-l8 waves-effect waves-teal btn-flat light-green-text">Cancelar</a>
+                        <a class="col s6 m3 l2 waves-effect waves-teal btn light-green" (click)="addWord()">Aceptar</a>
+                </div>
+                <ng-template #processing>
+                    <app-loader [size]="'small'" [show]="true" [center]="true"></app-loader>
+                </ng-template>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<input #exFileInput type="file" accept=".jpg" style="display:none;" (change)="imgSelected($event)">
+<input #signFileInput type="file" accept=".jpg" style="display:none;" (change)="imgSelected($event)">

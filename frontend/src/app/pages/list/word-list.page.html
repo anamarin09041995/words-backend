@@ -1,0 +1,114 @@
+<div class="grey lighten-4 vertical-layout">
+    <nav class="pink darken-1">
+        <div class="nav-wrapper container">
+            <span href="#" class="brand-logo">Sing 4 All</span>
+            <div class="right" *ngIf="searching; else noSearching">
+                <div style="display: flex; flex-direction: row;">
+                    <input type="text" class="browser-default findinput">
+                    <i class="material-icons clickable" (click)="searching = false">cancel</i>
+                </div>
+            </div>
+            <ng-template #noSearching>
+                <ul class="right hide-on-med-and-down">
+                    <li>
+                        <i class="material-icons clickable" (click)="searching = true">search</i>
+                    </li>
+                </ul>
+            </ng-template>
+
+        </div>
+    </nav>
+
+    <div class="container section ly-fill vertical-layout">
+        <div class="card ly-fill">
+            <div class="card-content">
+                <table class="centered" *ngIf="data.length > 0; else noWords">
+                    <thead>
+                        <tr>
+                            <th>Palabra</th>
+                            <th>Seña</th>
+                            <th>Ejemplo</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr *ngFor="let w of data; index as i">
+                            <td>{{w.doc.text}}</td>
+                            <td>
+                                <img src="{{service.getImgIndex(w.id, 1)}}">
+                            </td>
+                            <td>
+                                <img src="{{service.getImgIndex(w.id, 2)}}">
+                            </td>
+                            <td>
+                                <i class="material-icons clickable grey-text mr" (click)="goToEdit(i)">edit</i>
+                                <i class="material-icons clickable grey-text" (click)="removeModal(i)">clear</i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <ng-template #noWords>Palabras no encontradas</ng-template>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large light-green">
+            <i class="large material-icons">add</i>
+        </a>
+        <ul>
+            <li>
+                <a class="btn-floating blue" (click)="modalUpload.open()">
+                    <i class="material-icons">attach_file</i>
+                </a>
+            </li>
+            <li>
+                <a class="btn-floating yellow darken-1" (click)="goToAdd()">
+                    <i class="material-icons">add</i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<div id="removeModal" class="modal">
+    <div class="modal-content">
+        <h4>Eliminar palabra</h4>
+        <p *ngIf="data.length > 0 ">¿ Desea eliminar la palabra
+            <b>{{data[removeIndex].text}}</b> ?</p>
+    </div>
+    <div class="modal-footer">
+        <a class="modal-close waves-effect waves-green btn-flat clickable">Cancelar</a>
+        <a class="modal-close waves-effect waves-green btn-flat clickable" (click)="removeWord()">Aceptar</a>
+    </div>
+</div>
+
+
+<div id="uploadModal" class="modal">
+    <div class="modal-content">
+        <h4>Subir Archivo</h4>
+        <p>Suba un archivo Zip:</p>
+        <ul>
+            <li>
+                <b>words.xslc</b> Tabla con las palabras y los nombres de las imagenes</li>
+            <li>
+                <b>imagenes/</b> Archivos de imagenes como se definieron en el documento excel.</li>
+        </ul>
+
+        <div class="file-field input-field">
+            <div class="btn">
+                <span>File</span>
+                <input type="file">
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a class="modal-close waves-effect waves-green btn-flat clickable">Cancelar</a>
+        <a class="modal-close waves-effect waves-green btn-flat clickable" (click)="removeWord()">Aceptar</a>
+    </div>
+</div>

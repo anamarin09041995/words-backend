@@ -1,0 +1,73 @@
+html, body{
+    height: 100%;
+}
+
+.center-crop{
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size:cover;
+  }
+
+.vertical-layout{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.ly-fill{
+    flex: 1;
+}
+
+nav .findinput{
+    color: white;    
+    background: rgba(0, 0, 0, 0);    
+    border:none;
+    border-bottom: 1px solid rgba(255,255,255,0.5);
+    margin-top: 5px;
+    margin-right: 10px;
+    height: 40px;
+    vertical-align: middle;
+}
+
+nav .findinput:focus{
+    border-bottom: 1px solid white;
+}
+
+.clickable{
+    cursor: pointer;
+}
+
+.mr{
+    margin-right: 15px;
+}
+
+td{
+    width: 28%;
+}
+
+td:last-child{
+    flex:70px;
+}
+
+td img{
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+}
+
+.breadcrumb.dark {
+    color: #777;
+    cursor: pointer;
+  }
+  
+  .breadcrumb.dark:before  {
+    color: #222;
+  }
+  
+  .breadcrumb.dark:last-child{
+    color: #111;
+    cursor: default;
+  }

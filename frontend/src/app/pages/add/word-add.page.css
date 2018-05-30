@@ -1,0 +1,9 @@
+.add-image{
+    background: #444;
+    cursor: pointer;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 20px;
+    object-fit: cover;
+    object-position: center;
+}
